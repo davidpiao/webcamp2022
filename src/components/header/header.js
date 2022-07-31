@@ -1,52 +1,57 @@
 import React, { useState } from "react"
-import "./header.css"
-import SearchBox from '../SearchBox';
+import "./Header.css"
+import { Link } from "react-router-dom"
 
 const Header = () => {
-  const [Mobile, setMobile] = useState(false)
-  const [searchValue, setSearchValue] = useState('');
-  return (
-    <>
-      <header>
-        <div className='container flexSB'>
-          <nav className='flexSB'>
-            <div className='logo'>
-              <img src='./images/logo.png' alt='' />
-              <a href='/'>로고 here</a>
+
+    // const [term, setTerm] = useState("");
+    // const dispatch = useDispatch();
+    // const submitHandler = (e) => {
+    //     e.preventDefault();
+    //     console.log(term)
+    //     useDispatch(fetchAsyncMovies(term));
+        
+    // };
+
+    // const [searchTerm, setSearchTerm] = useState('');
+    // const [{state, loading, error}, fetchMovies] =  useHomeFetch(searchTerm);
+
+
+    // const SEARCH_API = "https://api.themoviedb.org/3/search/movie?api_key=b0d9dbccf7edafe8eef07c2693cd100b&language=ko-KR&page=1&query="
+    // const handleOnSubmit = (e) => {
+    //     e.preventDefault();
+
+    //     // fetch(SEARCH_API+searchTerm)
+    //     //     .then((res) => res.json())
+    //     //     .then((data) => {
+    //     //         setMovies(data.results);
+    //     //     })
+    // };
+
+    // const handleOnChange = (e) => {
+    //     setSearchTerm(e.target.value);
+    // }
+    // const searchMovies = (search) => {
+    //     const endpoint = search ? "https://api.themoviedb.org/3/search/movie?api_key=b0d9dbccf7edafe8eef07c2693cd100b&language=ko-KR&page=1&query=" + search  : "https://api.themoviedb.org/3/search/popular?api_key=b0d9dbccf7edafe8eef07c2693cd100b&language=ko-KR&page=1&query=";
+    //     setSearchTerm(search);
+    //     // fetchMovies(endpoint);
+    // }
+
+    return (
+        <div className="header">
+            <div className="headerLeft">
+                <Link to="/"><img className="header__icon" src="http://davidpiao.dothome.co.kr/web/logo.jpg" /></Link>
+                <Link to="/movies/popular" style={{textDecoration: "none"}}><span>인기 신작 영화</span></Link>
+                <Link to="/movies/top_rated" style={{textDecoration: "none"}}><span>인기 영화 랭킹</span></Link>
+                <Link to="/movies/upcoming" style={{textDecoration: "none"}}><span>예정작</span></Link>
+                <Link to="/movies/watchlist" style={{textDecoration: "none"}}><span>내 워치리스트</span></Link>
             </div>
-            {/*<ul className='flexSB'>*/}
-            <ul className={Mobile ? "navMenu-list" : "flexSB"} onClick={() => setMobile(false)}>
-              <li>
-                <a href='/'>로그인</a>
-              </li>
-              <li>
-                <a href='/'>회원가입</a>
-              </li>
-              <li>
-                <a href='/'>영화</a>
-              </li>
-              <li>
-                <a href='/'>드라마</a>
-              </li>
-              <li>
-                <a href='/'>마이 페이지</a>
-              </li>
-            </ul>
-            <button className='toggle' onClick={() => setMobile(!Mobile)}>
-              {Mobile ? <i className='fa fa-times'></i> : <i className='fa fa-bars'></i>}
-            </button>
-          </nav>
-          <div className='account flexSB'>
-            {/* <i className='fa fa-search'></i>
-            <i class='fas fa-bell'></i>
-            <i className='fas fa-user'></i> */}
-            <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
-            {/* <button>Subscribe Now</button> */}
-          </div>
+            <div className="headerRight">
+                <Link to="/movies/search" style={{textDecoration: "none"}}><span>검색</span></Link>
+                <Link to="/movies/login" style={{textDecoration: "none"}}><span>로그인</span></Link>
+            </div>
         </div>
-      </header>
-    </>
-  )
+    )
 }
 
 export default Header
